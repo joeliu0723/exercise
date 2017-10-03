@@ -10,7 +10,6 @@
   z-index: 100;/*layer*/
 }
 #content{
-  border:1px solid blue;
   position: relative;
   left: -20px;
   top: 58px;
@@ -18,6 +17,7 @@
 }
 .container{
   padding-top: 10px
+  width:800px;
   margin: auto;
 }
 #content > .container > div {
@@ -30,11 +30,9 @@
 /* 水平線的樣式 */
 
 hr.bar {
-  border: 2px solid #0088A8;
   width: 180px;
 }
 #about,#my-work,#contact-me{
-  border:1px solid blue;
 }
 .menu li {
   display: inline-block;
@@ -42,7 +40,7 @@ hr.bar {
   width: 150px;
   padding: 10px 0px;
 
-  border: 1px solid #fff;
+  border: 1px solid blue;
   border-radius: 8px;
 
   list-style-type: none;
@@ -57,7 +55,6 @@ a {
 }
 
 li:hover {
-  border: 1px solid #ff6600;
   background-color: #888888;
 }
 
@@ -149,7 +146,6 @@ form.contact-form {
 .form-row input, .form-row textarea {
   border-radius: 3px;
   width: 100%;
-  border: 1px solid #D6D9DC;
   padding: 7px;
 }
 
@@ -193,6 +189,86 @@ h1 {
 #my-work-gallery {
     text-align: center;
 }
-tr{
-  padding-bottom: 10px
+/*
+定義手機與網頁版範圍
+  */
+@media screen and (min-width: 1024px) {
+  .menu-button,
+  .menu-button-checkbox {
+    display: none;
+  }
+}
+@media screen and (max-width: 1023px) {
+/*取消原本不會超過父層寬度30%的設定*/
+  .item {
+    max-width: 100%;
+  }
+  /*form.contact-form 原本寬度設定為 50%，在電腦版的大螢幕上尺寸還滿適合的，但跑到小螢幕上就顯得有點擠。改成80％*/
+  form.contact-form {
+    width: 80%;
+  }
+  /*
+    手機版的 css 都寫在這邊
+  */
+.container{
+  width:auto;
+}
+.menu-button{
+  float:right;
+  font-size: 25px;
+  line-height: 40px;
+  color: white;
+  background: transparent;
+  padding: 0 15px
+  border:0;
+}
+/*
+  讓menu-button-checkbox根上面.menu-button的大小一樣
+*/
+.menu-button-checkbox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 55px;
+    height: 40px;
+    /*
+      把 checkbox 變透明
+    */
+    opacity: 0;
+  }
+  /*
+    當 .menu-button-checkbox 狀態為 checked 時，選擇在同階層後面的 .menu 元素
+  */
+  .menu-button-checkbox:checked ~ .menu {
+    display: block;
+  }
+/*
+  把 ul.menu 排到右半邊去，並美化一下
+*/
+.menu{
+  /*
+   預設不顯示，當 .menu-button-checkbox 狀態為 checked 時，顯示
+  */
+  display: none;
+  margin-top:0;
+  padding-left:0;
+  position:fixed;
+  right:0;
+  top:40px;
+  width:150px;
+  height:100%;
+  background:red;
+}
+.menu li{
+  border: 0;
+  border-radius:0;
+}
+/* 讓父層容器 #my-avatar 的寬度變成 100%，以免下方文字擠上來；同時將圖片置中處理，並多留一些上下間距。*/
+#my-avatar{
+  width:100%;
+}
+#my-avatar img {
+  display: block;
+  margin: 15px auto;
+}
 }
